@@ -6,15 +6,15 @@ import {
 } from 'graphql';
 
 export default new GraphQLObjectType({
-  name: 'Comment',
+  name: 'Pessoa',
   fields: {
     _id: {
       type: new GraphQLNonNull(GraphQLID)
     },
-    postId: {
+    cidade: {
       type: new GraphQLNonNull(GraphQLID)
     },
-    text: {
+    email: {
       type: GraphQLString
     }
   }

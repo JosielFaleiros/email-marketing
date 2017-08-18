@@ -1,0 +1,7 @@
+import pessoa from './single';
+import pessoas from './mutiple';
+
+export default {
+  pessoa,
+  pessoas
+};

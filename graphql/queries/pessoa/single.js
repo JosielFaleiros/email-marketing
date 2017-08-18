@@ -1,28 +1,27 @@
 import {
   GraphQLList,
-  GraphQLNonNull,
-  GraphQLID
+  GraphQLID,
+  GraphQLNonNull
 } from 'graphql';
+import {Types} from 'mongoose';
 
-import commentType from '../../types/comment';
+import pessoaType from '../../types/pessoa';
 import getProjection from '../../get-projection';
-import CommentModel from '../../../models/comment';
+import PessoaModel from '../../../models/pessoa';
 
 export default {
-  type: new GraphQLList(commentType),
+  type: pessoaType,
   args: {
-    postId: {
-      name: 'postId',
+    id: {
+      name: 'id',
       type: new GraphQLNonNull(GraphQLID)
     }
   },
   resolve (root, params, options) {
     const projection = getProjection(options.fieldASTs[0]);
 
-    return CommentModel
-      .find({
-        postId: params.postId
-      })
+    return PessoaModel
+      .findById(params.id)
       .select(projection)
       .exec();
   }

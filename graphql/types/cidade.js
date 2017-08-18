@@ -6,15 +6,12 @@ import {
 } from 'graphql';
 
 export default new GraphQLObjectType({
-  name: 'BlogPost',
+  name: 'Cidade',
   fields: {
     _id: {
       type: new GraphQLNonNull(GraphQLID)
     },
-    title: {
-      type: GraphQLString
-    },
-    description: {
+    nome: {
       type: GraphQLString
     }
   }

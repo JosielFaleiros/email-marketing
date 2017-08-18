@@ -2,17 +2,17 @@ import {
   GraphQLList
 } from 'graphql';
 
-import blogPostType from '../../types/blog-post';
+import cidadeType from '../../types/cidade';
 import getProjection from '../../get-projection';
-import BlogPostModel from '../../../models/blog-post';
+import CidadeModel from '../../../models/cidade';
 
 export default {
-  type: new GraphQLList(blogPostType),
+  type: new GraphQLList(cidadeType),
   args: {},
   resolve (root, params, options) {
     const projection = getProjection(options.fieldASTs[0]);
 
-    return BlogPostModel
+    return CidadeModel
       .find()
       .select(projection)
       .exec();

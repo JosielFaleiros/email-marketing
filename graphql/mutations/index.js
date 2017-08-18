@@ -1,7 +1,7 @@
-import blogPost from './blog-post';
-import comment from './comment';
+import pessoa from './pessoa';
+import cidade from './cidade';
 
 export default {
-  ...blogPost,
-  ...comment
+  ...pessoa,
+  ...cidade
 };
