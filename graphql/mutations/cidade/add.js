@@ -4,10 +4,11 @@ import {
 } from 'graphql';
 
 import cidadeInputType from '../../types/cidade-input';
+import cidadeType from '../../types/cidade';
 import CidadeModel from '../../../models/cidade';
 
 export default {
-  type: GraphQLBoolean,
+  type: cidadeType,
   args: {
     data: {
       name: 'data',
@@ -21,6 +22,6 @@ export default {
     if (!newCidade) {
       throw new Error('Error adding new blog post');
     }
-    return true;
+    return newCidade;
   }
 };

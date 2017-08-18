@@ -4,10 +4,11 @@ import {
 } from 'graphql';
 
 import pessoaInputType from '../../types/pessoa-input';
+import pessoaType from '../../types/pessoa';
 import PessoaModel from '../../../models/pessoa';
 
 export default {
-  type: GraphQLBoolean,
+  type: pessoaType,
   args: {
     data: {
       name: 'data',
@@ -21,6 +22,6 @@ export default {
     if (!newPessoa) {
       throw new Error('Error adding new comment');
     }
-    return true;
+    return newPessoa;
   }
 };
