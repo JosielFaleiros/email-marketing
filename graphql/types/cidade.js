@@ -9,7 +9,7 @@ export default new GraphQLObjectType({
   name: 'Cidade',
   fields: {
     _id: {
-      type: new GraphQLNonNull(GraphQLID)
+      type: GraphQLID
     },
     nome: {
       type: GraphQLString
