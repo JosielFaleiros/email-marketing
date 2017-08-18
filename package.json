@@ -5,7 +5,7 @@
   "license": "GPL",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bruno12mota/graphql-nodejs"
+    "url": "https://github.com/rafaelnsantos/graphql-nodejs"
   },
   "scripts": {
     "start": "nodemon index.js"
