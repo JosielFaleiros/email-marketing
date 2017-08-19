@@ -3,6 +3,7 @@ import {
   GraphQLString,
   GraphQLID
 } from 'graphql';
+import GraphQLCidade from './cidade';
 
 export default new GraphQLObjectType({
   name: 'Pessoa',
@@ -11,7 +12,7 @@ export default new GraphQLObjectType({
       type: GraphQLID
     },
     cidade: {
-      type: GraphQLID
+      type: GraphQLCidade
     },
     email: {
       type: GraphQLString
