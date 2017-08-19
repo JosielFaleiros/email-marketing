@@ -20,14 +20,16 @@ export default {
         .find({
           cidade: params.data.cidades
         })
+        .populate('cidade')
         .exec();
         
-    const mensagemModel = new MensagemModel(params.data);
-    const newMensagem = await mensagemModel.save();
+    return new MensagemModel(params.data);
+    // const mensagemModel = new MensagemModel(params.data);
+    // const newMensagem = await mensagemModel.save();
 
-    if (!newMensagem) {
-      throw new Error('Error adding new comment');
-    }
-    return newMensagem;
+    // if (!newMensagem) {
+    //   throw new Error('Error adding new comment');
+    // }
+    // return newMensagem;
   }
 };
