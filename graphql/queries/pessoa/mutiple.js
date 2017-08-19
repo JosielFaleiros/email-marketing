@@ -32,7 +32,7 @@
 //     else
 //       return PessoaModel
 //         .find()
-//         .populate('cidade', '-__v -_id')
+//         .populate('cidade')
 //         .select(projection)
 //         .exec();
 //   }
