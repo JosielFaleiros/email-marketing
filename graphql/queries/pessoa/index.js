@@ -1,7 +1,9 @@
-import pessoa from './single';
-import pessoas from './mutiple';
+// funcionando, porem nao pertence a baseline
 
-export default {
-  pessoa,
-  pessoas
-};
+// import pessoa from './single';
+// import pessoas from './mutiple';
+
+// export default {
+//   pessoa,
+//   pessoas
+// };

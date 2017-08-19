@@ -1,28 +1,30 @@
-import {
-  GraphQLList,
-  GraphQLID,
-  GraphQLNonNull
-} from 'graphql';
-import {Types} from 'mongoose';
+// funcionando, porem nao pertence a baseline
 
-import pessoaType from '../../types/pessoa';
-import getProjection from '../../get-projection';
-import PessoaModel from '../../../models/pessoa';
+// import {
+//   GraphQLList,
+//   GraphQLID,
+//   GraphQLNonNull
+// } from 'graphql';
+// import {Types} from 'mongoose';
 
-export default {
-  type: pessoaType,
-  args: {
-    id: {
-      name: 'id',
-      type: new GraphQLNonNull(GraphQLID)
-    }
-  },
-  resolve (root, params, options) {
-    const projection = getProjection(options.fieldASTs[0]);
+// import pessoaType from '../../types/pessoa';
+// import getProjection from '../../get-projection';
+// import PessoaModel from '../../../models/pessoa';
 
-    return PessoaModel
-      .findById(params.id)
-      .select(projection)
-      .exec();
-  }
-};
+// export default {
+//   type: pessoaType,
+//   args: {
+//     id: {
+//       name: 'id',
+//       type: new GraphQLNonNull(GraphQLID)
+//     }
+//   },
+//   resolve (root, params, options) {
+//     const projection = getProjection(options.fieldASTs[0]);
+
+//     return CommentModel
+//       .findById(params.id)
+//       .select(projection)
+//       .exec();
+//   }
+// };

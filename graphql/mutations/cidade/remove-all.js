@@ -1,3 +1,5 @@
+//codigo antigo, não pertence a baseline
+
 // import {
 //   GraphQLBoolean
 // } from 'graphql';
