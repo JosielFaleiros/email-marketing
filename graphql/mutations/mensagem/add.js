@@ -19,7 +19,7 @@ export default {
     params.data.pessoas = await PessoaModel
         .find({
           cidade: params.data.cidades
-        }, '-_id email')
+        })
         .exec();
         
     const mensagemModel = new MensagemModel(params.data);
