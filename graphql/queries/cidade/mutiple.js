@@ -14,6 +14,7 @@ export default {
 
     return CidadeModel
       .find()
+      .sort('nome')
       .select(projection)
       .exec();
   }
