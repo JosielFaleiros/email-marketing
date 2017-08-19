@@ -3,11 +3,12 @@ import graphqlHTTP from 'express-graphql';
 import mongoose from 'mongoose';
 
 import schema from './graphql';
+import cors from 'cors';
 
 var app = express();
 
 // GraphqQL server route
-app.use('/graphql', graphqlHTTP(req => ({
+app.use('/graphql', cors(), graphqlHTTP(req => ({
   schema,
   pretty: true,
   graphiql: true
