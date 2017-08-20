@@ -22,6 +22,6 @@ export default {
     if (!newPessoa) {
       throw new Error('Error adding new comment');
     }
-    return newPessoa;
+    return PessoaModel.findOne(newPessoa).populate('cidade').exec();
   }
 };
