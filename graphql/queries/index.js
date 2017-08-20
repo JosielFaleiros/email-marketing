@@ -1,8 +1,8 @@
-// import pessoa from './pessoa';
+import pessoa from './pessoa';
 import cidade from './cidade';
 
 export default {
-  // ...pessoa,
+  ...pessoa,
   ...cidade
 };
 
