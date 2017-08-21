@@ -11,29 +11,26 @@ import getProjection from '../../get-projection';
 import PessoaModel from '../../../models/pessoa';
 
 export default {
+  //o que vai ser retornado na query
   type: new GraphQLList(pessoaType),
+
+  //argumentos da query
   args: {
-    cidade: {
-      name: 'cidade',
-      type: new GraphQLList(GraphQLID)
+    cidades: {
+      name: 'cidades',
+      type: new GraphQLNonNull(new GraphQLList(GraphQLID))
     }
   },
+
+  //query
   resolve(root, params, options) {
     const projection = getProjection(options.fieldASTs[0]);
 
-    if (params.cidade)
-      return PessoaModel
-        .find({
-          cidade: params.cidade
-        })
-        .populate('cidade')
-        .select(projection)
-        .exec();
-    else
-      return PessoaModel
-        .find()
-        .populate('cidade')
-        .select(projection)
-        .exec();
+    return PessoaModel //mongoose model
+      .find({cidade: params.cidades}) //filtra pelas cidades recebidas nos parametros
+      .populate('cidade') //para a cidade poder ser acessada na query
+      .select(projection)
+      .exec();
+
   }
 };
