@@ -17,5 +17,6 @@ export default {
       .sort('nome')
       .select(projection)
       .exec();
+      
   }
 };
