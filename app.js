@@ -9,9 +9,9 @@ var app = express();
 
 // GraphqQL server route
 app.use('/graphql', cors(), graphqlHTTP(req => ({
-  schema,
-  pretty: true,
-  graphiql: true
+  schema, //o schema esta fragmentado em toda pasta graphql
+  pretty: true, //?
+  graphiql: true //interface para testar as funcoes no /graphql
 })));
 
 // Connect mongo database
