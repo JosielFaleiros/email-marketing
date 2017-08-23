@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 var CidadeSchema = new mongoose.Schema({
     nome: {
@@ -7,6 +7,6 @@ var CidadeSchema = new mongoose.Schema({
         index: true,
         unique: true
     }
-});
+})
 
-export default mongoose.model('Cidade', CidadeSchema);
+export default mongoose.model('Cidade', CidadeSchema)

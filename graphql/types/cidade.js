@@ -2,7 +2,7 @@ import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID
-} from 'graphql';
+} from 'graphql'
 
 export default new GraphQLObjectType({
   name: 'Cidade',
@@ -14,4 +14,4 @@ export default new GraphQLObjectType({
       type: GraphQLString
     }
   }
-});
+})

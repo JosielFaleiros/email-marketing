@@ -1,5 +1,5 @@
-import enviarEmail from './add';
+import enviarEmail from './add'
 
 export default {
   enviarEmail
-};
+}

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 var MensagemSchema = new mongoose.Schema({
     pessoas: [{
@@ -10,5 +10,5 @@ var MensagemSchema = new mongoose.Schema({
         type: String,
         required: true,
     }
-});
-export default mongoose.model('Mensagem', MensagemSchema);
+})
+export default mongoose.model('Mensagem', MensagemSchema)

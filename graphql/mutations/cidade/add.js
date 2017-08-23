@@ -1,11 +1,11 @@
 import {
   GraphQLNonNull,
   GraphQLBoolean
-} from 'graphql';
+} from 'graphql'
 
-import cidadeInputType from '../../types/cidade-input';
-import cidadeType from '../../types/cidade';
-import CidadeModel from '../../../models/cidade';
+import cidadeInputType from '../../types/cidade-input'
+import cidadeType from '../../types/cidade'
+import CidadeModel from '../../../models/cidade'
 
 export default {
   type: cidadeType,
@@ -16,12 +16,12 @@ export default {
     }
   },
   async resolve (root, params, options) {
-    const cidadeModel = new CidadeModel(params.data);
-    const newCidade = await cidadeModel.save();
+    const cidadeModel = new CidadeModel(params.data)
+    const newCidade = await cidadeModel.save()
 
     if (!newCidade) {
-      throw new Error('Error adding new blog post');
+      throw new Error('Error adding new blog post')
     }
-    return newCidade;
+    return newCidade
   }
-};
+}

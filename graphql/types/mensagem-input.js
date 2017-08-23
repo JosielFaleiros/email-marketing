@@ -4,7 +4,7 @@ import {
   GraphQLID,
   GraphQLNonNull,
   GraphQLList
-} from 'graphql';
+} from 'graphql'
 
 export default new GraphQLInputObjectType({
   name: 'MensagemInput',
@@ -12,4 +12,4 @@ export default new GraphQLInputObjectType({
     cidades: {type: new GraphQLNonNull(new GraphQLList(GraphQLID))},
     mensagem: {type: new GraphQLNonNull(GraphQLString)}
   }
-});
+})

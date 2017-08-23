@@ -1,10 +1,10 @@
 import {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLID,
   GraphQLList
-} from 'graphql';
-import GraphQLPessoa from './pessoa';
+} from 'graphql'
+
+import GraphQLPessoa from './pessoa'
 
 export default new GraphQLObjectType({
   name: 'Mensagem',
@@ -16,4 +16,4 @@ export default new GraphQLObjectType({
       type: GraphQLString
     }
   }
-});
+})

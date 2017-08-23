@@ -1,12 +1,12 @@
 import {
   GraphQLNonNull,
   GraphQLBoolean
-} from 'graphql';
-import getProjection from '../../get-projection';
-import mensagemInputType from '../../types/mensagem-input';
-import mensagemType from '../../types/mensagem';
-import MensagemModel from '../../../models/mensagem';
-import PessoaModel from '../../../models/pessoa';
+} from 'graphql'
+import getProjection from '../../get-projection'
+import mensagemInputType from '../../types/mensagem-input'
+import mensagemType from '../../types/mensagem'
+import MensagemModel from '../../../models/mensagem'
+import PessoaModel from '../../../models/pessoa'
 export default {
   type: mensagemType,
   args: {
@@ -32,4 +32,4 @@ export default {
     // }
     // return newMensagem;
   }
-};
+}

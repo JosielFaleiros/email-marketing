@@ -1,11 +1,11 @@
 import {
   GraphQLNonNull,
   GraphQLBoolean
-} from 'graphql';
+} from 'graphql'
 
-import pessoaInputType from '../../types/pessoa-input';
-import pessoaType from '../../types/pessoa';
-import PessoaModel from '../../../models/pessoa';
+import pessoaInputType from '../../types/pessoa-input'
+import pessoaType from '../../types/pessoa'
+import PessoaModel from '../../../models/pessoa'
 
 export default {
   type: pessoaType,
@@ -20,8 +20,8 @@ export default {
     const newPessoa = await pessoaModel.save();
 
     if (!newPessoa) {
-      throw new Error('Error adding new comment');
+      throw new Error('Error adding new comment')
     }
-    return PessoaModel.findOne(newPessoa).populate('cidade').exec();
+    return PessoaModel.findOne(newPessoa).populate('cidade').exec()
   }
-};
+}

@@ -3,7 +3,7 @@ import {
   GraphQLString,
   GraphQLID,
   GraphQLNonNull
-} from 'graphql';
+} from 'graphql'
 
 export default new GraphQLInputObjectType({
   name: 'PessoaInput',
@@ -11,4 +11,4 @@ export default new GraphQLInputObjectType({
     cidade: {type: new GraphQLNonNull(GraphQLID)},
     email: {type: new GraphQLNonNull(GraphQLString)}
   }
-});
+})
