@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
 
 var MensagemSchema = new mongoose.Schema({
-    pessoas: [{
+    cidades: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Pessoa',
+        ref: 'Cidade',
         required: true
     }],
     mensagem: {

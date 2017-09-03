@@ -16,12 +16,12 @@ export default {
     }
   },
   async resolve (root, params, options) {
-    params.data.pessoas = await PessoaModel
-        .find({
-          cidade: params.data.cidades
-        })
-        .populate('cidade')
-        .exec();
+    // params.data.pessoas = await PessoaModel
+    //     .find({
+    //       cidade: params.data.cidades
+    //     })
+    //     .populate('cidade')
+    //     .exec();
         
     return new MensagemModel(params.data);
     // const mensagemModel = new MensagemModel(params.data);

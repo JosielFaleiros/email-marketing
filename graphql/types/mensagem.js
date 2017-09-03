@@ -4,13 +4,13 @@ import {
   GraphQLList
 } from 'graphql'
 
-import GraphQLPessoa from './pessoa'
+import GraphQLCidade from './cidade'
 
 export default new GraphQLObjectType({
   name: 'Mensagem',
   fields: {
-    pessoas: {
-      type: new GraphQLList(GraphQLPessoa)
+    cidades: {
+      type: new GraphQLList(GraphQLCidade)
     },
     mensagem: {
       type: GraphQLString
