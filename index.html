@@ -4,15 +4,6 @@
 <head>
     <link rel="manifest" href="/manifest.json">
 
-    <script  src="https://cdn.rawgit.com/GoogleChrome/pwacompat/v1.0.3/pwacompat.min.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker
-                     .register('/service-worker.js')
-                     .then(function() { console.log('Service Worker Registered'); });
-          }
-        
-    </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, maximum-scale=1">
@@ -66,6 +57,15 @@
     </div>
 
     <!-- Include the library in the page -->
+    <script  src="https://cdn.rawgit.com/GoogleChrome/pwacompat/v1.0.3/pwacompat.min.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                     .register('/service-worker.js')
+                     .then(function() { console.log('Service Worker Registered'); });
+          }
+        
+    </script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/apollo-client-browser@1.9.0"></script>
     <script src="https://unpkg.com/vue-apollo@2.1.0-beta.19"></script>
