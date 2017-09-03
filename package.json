@@ -1,22 +1,16 @@
 {
-  "name": "graphqlnode",
-  "version": "0.0.0",
-  "description": "Introduction to GraphQL in nodeJS",
-  "license": "GPL",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rafaelnsantos/graphql-nodejs"
-  },
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon index.js"
   },
+  "author": "Rafael",
+  "license": "ISC",
   "dependencies": {
     "babel": "^5.8.23",
-    "cors": "^2.8.4",
-    "express": "^4.13.3",
-    "express-graphql": "^0.4.5",
-    "graphql": "^0.4.14",
-    "mongoose": "^4.3.5",
+    "http": "0.0.0",
     "nodemon": "^1.11.0"
   }
 }

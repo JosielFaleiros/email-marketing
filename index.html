@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="manifest" href="/manifest.json">
+
+    <script  src="https://cdn.rawgit.com/GoogleChrome/pwacompat/v1.0.3/pwacompat.min.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                     .register('/service-worker.js')
+                     .then(function() { console.log('Service Worker Registered'); });
+          }
+        
+    </script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Fira+Mono|Share+Tech+Mono');
+
+        body {
+            color: #333;
+            font-family: 'Fira Mono';
+        }
+
+        .mensagem {
+            width: 100%;
+            height: 200px;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Share Tech Mono';
+            color: #000;
+            /* text-transform: uppercase; */
+        }
+
+        .title {
+            padding: 0px 0px 5px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-sm-9 col-lg-5 col-xl-4 mx-auto">
+                <h1>Email Marketing</h1>
+                <div>
+                    <div v-if="loading" class="loading">Loading...</div>
+                    <article v-for="cidade of cidades">
+                        <div class="title"><input type="checkbox" v-bind:value="cidade._id" v-model="cidadesMarcadas">{{ cidade.nome }}</div>
+                    </article>
+                </div>
+                <textarea class="mensagem" v-model="mensagem" placeholder="Digite a mensagem"></textarea>
+                <center><button @click="enviarMensagem(cidadesMarcadas, mensagem)" class="btn btn-lg btn-outline-secondary btn-block" >Enviar</button></center>
+
+                <br>
+                <br> {{mensagem}} <br><br>
+                <lista-email v-for="pessoa of pessoas" v-bind:pessoa="pessoa" v-bind:key="pessoa._id"> </lista-email>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the library in the page -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/apollo-client-browser@1.9.0"></script>
+    <script src="https://unpkg.com/vue-apollo@2.1.0-beta.19"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script>
+        console.clear()
+
+        const apolloClient = new Apollo.lib.ApolloClient({
+            networkInterface: Apollo.lib.createNetworkInterface({
+                uri: 'https://email-marketing-rafaelnsantos.c9users.io/graphql'
+                // uri: 'http://localhost:8080/graphql'
+            }),
+        })
+
+        const apolloProvider = new VueApollo.ApolloProvider({
+            defaultClient: apolloClient,
+        })
+
+        // New VueJS instance
+        const app = new Vue({
+            // CSS selector of the root DOM element
+            el: '#app',
+            
+            //variaveis
+            data() {
+                return {
+                    cidades: [],
+                    cidadesMarcadas: [],
+                    pessoas: [],
+                    mensagem: "",
+                    loading: 0,
+                }
+            },
+
+            mounted() {
+                this.cidades = this.fetchCidades()
+            },
+
+            watch: {
+                cidadesMarcadas: () => app.fetchPessoas(app.cidadesMarcadas)
+            },
+
+            // Apollo GraphQL
+            apolloProvider,
+
+            methods: {
+                fetchCidades: async function () {
+                    const cidades = await this.$apollo.query({ query: Apollo.gql`
+                        query {
+                            cidades {
+                                _id
+                                nome
+                            }
+                        }
+                        ` 
+                    })
+                    this.cidades = cidades.data['cidades']
+                },
+
+                fetchPessoas: async function () {
+                    const pessoas = await this.$apollo.query({
+                        query: Apollo.gql`
+                            query ($cidades: [ID]!) {
+                                pessoas(cidades: $cidades) {
+                                    email
+                                }
+                            }
+                            `,
+                        variables: {
+                            cidades: this.cidadesMarcadas,
+                        },
+                    })
+                    this.pessoas = pessoas.data['pessoas']
+                },
+
+                enviarMensagem: async function (cidades, mensagem) {
+                    const newMensagem = await this.$apollo.mutate({
+                        mutation: Apollo.gql`
+                            mutation ($cidades: [ID]!, $mensagem: String!) {
+                                enviarEmail(data: {
+                                    cidades: $cidades
+                                    mensagem: $mensagem
+                                }) {
+                                    pessoas {
+                                        email
+                                    }
+                                    mensagem
+                                }
+                            }
+                            `,
+                        variables: {
+                            cidades: cidades,
+                            mensagem: mensagem
+                        }
+                    })
+                    console.log(newMensagem.data['enviarEmail'])
+                    this.cidadesMarcadas = []
+                    this.mensagem = ''
+                    return newMensagem.data['enviarEmail']
+                },
+
+                addCidade: async function (nome) {
+                    const newCidade = await this.$apollo.mutate({
+                        mutation: Apollo.gql`
+                            mutation ($nome : String!) {
+                                addCidade(data:{
+                                    nome: $nome
+                                }){
+                                    _id
+                                }
+                            }
+                            `,
+                        variables: {
+                            nome: nome,
+                        },
+                    })
+                    this.fetchCidades()
+                    return newCidade.data['addCidade']
+                },
+
+                addPessoa: async function (cidade, email) {
+                    const newPessoa = await this.$apollo.mutate({
+                        mutation: Apollo.gql`
+                            mutation ($cidade: ID!, $email: String!) {
+                                addPessoa(data:{
+                                    cidade: $cidade
+                                    email: $email
+                                }){
+                                    _id
+                                }
+                            }
+                            `,
+                        variables: {
+                            cidade: cidade,
+                            email: email
+                        },
+                    })
+                    return newPessoa.data['addPessoa']
+                }
+            },
+        })
+
+        Vue.component('lista-email', {
+            props: {
+                'pessoa': [Object],
+            },
+            template: '<div class="title">{{ pessoa.email }}</div>'
+        })
+    </script>
+
+
+</body>
+
+</html>
