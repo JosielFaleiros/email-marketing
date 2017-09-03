@@ -9,7 +9,7 @@ var CampanhaSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    mensagem: [{
+    mensagens: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Mensagem',
         required: true

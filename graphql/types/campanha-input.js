@@ -15,6 +15,6 @@ export default new GraphQLInputObjectType({
         _id: {type: GraphQLID},
         nome: {type: new GraphQLNonNull(GraphQLString)},
         data: {type: new GraphQLNonNull(GraphQLDate)},
-        mensagem: {type: new GraphQLNonNull(new GraphQLList(GraphQLMensagem))}
+        mensagens: {type: new GraphQLNonNull(new GraphQLList(GraphQLMensagem))}
     }
 })

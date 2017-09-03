@@ -18,14 +18,14 @@ export default {
   },
   async resolve (root, params, options) {
 
-    params.data.mensagem = await params.data.mensagem.map( (mensagem) => {
+    params.data.mensagens = await params.data.mensagens.map( (mensagem) => {
       const mensagemModel = new MensagemModel(mensagem)
       return mensagemModel.save().then((res)=>{
         return res
       })
     })
 
-    params.data.mensagem = await Promise.all(params.data.mensagem)
+    params.data.mensagens = await Promise.all(params.data.mensagens)
     const campanhaModel = new CampanhaModel(params.data)
     const newCampanha = await campanhaModel.save()
     if (!newCampanha) {

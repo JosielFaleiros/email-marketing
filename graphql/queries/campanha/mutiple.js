@@ -31,7 +31,7 @@ export default {
         {data: {$lte: params.dataFim}}
       ]})
       .populate({
-        path: 'mensagem',
+        path: 'mensagens',
         populate: {path: 'cidades'}})
       .sort('data')
       .select(projection)
